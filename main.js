@@ -75,3 +75,36 @@ const barObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.langue-card').forEach(card => barObserver.observe(card));
+// ── ANIMATION CHIFFRES ──
+const counters = [
+  { id: 'count1', target: 3, suffix: '' },
+  { id: 'count3', target: 5, suffix: '+' },
+];
+
+function animateCount(el, target, suffix) {
+  let current = 0;
+  const step = Math.ceil(target / 30);
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = current + suffix;
+  }, 40);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      counters.forEach(c => {
+        const el = document.getElementById(c.id);
+        if (el) animateCount(el, c.target, c.suffix);
+      });
+      countObserver.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.hero-stats');
+if (statsSection) countObserver.observe(statsSection);
