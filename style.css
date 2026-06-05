@@ -385,6 +385,11 @@ section { padding: 6rem 5%; }
   height: 100%;
   border-radius: 2px;
   background: var(--grad);
+  width: 0% !important;
+  transition: width 1.2s ease;
+}
+.langue-bar-fill.animated {
+  width: var(--target-width) !important;
 }
 
 /* FORMATION */
