@@ -77,7 +77,7 @@ const barObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.langue-card').forEach(card => barObserver.observe(card));
 // ── ANIMATION CHIFFRES ──
 const counters = [
-  { id: 'count1', target: 3, suffix: '' },
+ { id: 'count1', target: 4, suffix: '' },
   { id: 'count3', target: 5, suffix: '+' },
 ];
 
