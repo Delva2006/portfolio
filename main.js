@@ -108,3 +108,16 @@ const countObserver = new IntersectionObserver((entries) => {
 
 const statsSection = document.querySelector('.hero-stats');
 if (statsSection) countObserver.observe(statsSection);
+// ── FORMULAIRE CONTACT ──
+function envoyerMessage() {
+  const nom = document.getElementById('nom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!nom || !email || !message) {
+    alert('Veuillez remplir tous les champs !');
+    return;
+  }
+  const subject = encodeURIComponent('Message de ' + nom + ' via portfolio');
+  const body = encodeURIComponent('Nom : ' + nom + '\nEmail : ' + email + '\n\nMessage :\n' + message);
+  window.location.href = 'mailto:alemawoungdelva@gmail.com?subject=' + subject + '&body=' + body;
+}
