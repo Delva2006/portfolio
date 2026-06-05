@@ -57,3 +57,21 @@ function type() {
   setTimeout(type, isDeleting ? 50 : 90);
 }
 type();
+// ── ANIMATION BARRES LANGUES ──
+document.querySelectorAll('.langue-bar-fill').forEach(bar => {
+  const targetWidth = bar.style.width;
+  bar.style.setProperty('--target-width', targetWidth);
+  bar.style.width = '0%';
+});
+
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.langue-bar-fill').forEach(bar => {
+        bar.classList.add('animated');
+      });
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.langue-card').forEach(card => barObserver.observe(card));
